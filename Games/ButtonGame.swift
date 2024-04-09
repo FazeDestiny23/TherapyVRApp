@@ -12,6 +12,8 @@ struct ButtonGame: View {
     @State private var counter = 0
     @State private var buttonX: CGFloat = 0
     @State private var buttonY: CGFloat = 0
+    @State private var lastPressTime: Date?
+    @State private var buttonColor = Color.blue
     
     let rectangleWidth: CGFloat = 800
     let rectangleHeight: CGFloat = 400
@@ -29,23 +31,30 @@ struct ButtonGame: View {
                         .frame(width: rectangleWidth, height: rectangleHeight)
                         .foregroundColor(.clear)
                     
-                    Capsule()
-                        .frame(width: 150, height: 50)
-                        .foregroundColor(.blue)
-                        .position(x: buttonX, y: buttonY)
+                    Circle()
+                        .frame(width: 100, height: 100)
+                        .foregroundColor(buttonColor)                        .position(x: buttonX, y: buttonY)
+                        .opacity(isPressed ? 0.6 : 1.0)
+                        .animation(.easeInOut(duration: 0.2))
                     
                     Text("Tap me!")
                         .foregroundColor(.white)
                         .position(x: buttonX, y: buttonY)
                 }
-                .opacity(isPressed ? 0.6 : 1.0)
                 .scaleEffect(isPressed ? 1.1 : 1.0)
                 .onAppear {
                     buttonX = geometry.size.width / 2
                     buttonY = geometry.size.height / 2
+                    generateRandomPosition(in: geometry.size)
                 }
                 .onTapGesture {
                     counter += 1
+                    let currentTime = Date()
+                    if let lastTime = lastPressTime {
+                        let timeDifference = currentTime.timeIntervalSince(lastTime)
+                        print("Tiempo de respuesta: \(timeDifference) segundos")
+                    }
+                    lastPressTime = currentTime
                     generateRandomPosition(in: geometry.size)
                 }
                 .pressEvents {
@@ -81,6 +90,8 @@ struct ButtonGame: View {
         buttonY = max(buttonY, 0)
         buttonX = min(buttonX, size.width - 50)
         buttonY = min(buttonY, size.height - 50)
+        
+        buttonColor = Color(red: Double.random(in: 0...1), green: Double.random(in: 0...1), blue: Double.random(in: 0...1))
     }
 }
 
