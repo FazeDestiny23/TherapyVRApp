@@ -90,8 +90,6 @@
 		D6AAE2282B9FD75E00C43848 = {
 			isa = PBXGroup;
 			children = (
-				D6AAE2592B9FECFA00C43848 /* Modelos */,
-				D6AAE2582B9FECB500C43848 /* Views */,
 				D6929DD52BC4B69900E37344 /* Games */,
 				D6AAE2332B9FD75E00C43848 /* UsuarioDatos */,
 				D6AAE2342B9FD75E00C43848 /* Packages */,
@@ -112,8 +110,13 @@
 		D6AAE2332B9FD75E00C43848 /* UsuarioDatos */ = {
 			isa = PBXGroup;
 			children = (
+				D6AAE2592B9FECFA00C43848 /* Modelos */,
+				D6AAE2582B9FECB500C43848 /* Views */,
 				D6AAE2382B9FD75E00C43848 /* UsuarioDatosApp.swift */,
 				D6AAE23A2B9FD75E00C43848 /* ContentView.swift */,
+				D6AAE23F2B9FD76000C43848 /* Preview Assets.xcassets */,
+				D6AAE2412B9FD76000C43848 /* Info.plist */,
+				D6AAE23C2B9FD76000C43848 /* Assets.xcassets */,
 				D6AAE23E2B9FD76000C43848 /* Preview Content */,
 			);
 			path = UsuarioDatos;
@@ -130,9 +133,6 @@
 		D6AAE23E2B9FD76000C43848 /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
-				D6AAE23C2B9FD76000C43848 /* Assets.xcassets */,
-				D6AAE2412B9FD76000C43848 /* Info.plist */,
-				D6AAE23F2B9FD76000C43848 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
