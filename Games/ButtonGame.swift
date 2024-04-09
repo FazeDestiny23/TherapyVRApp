@@ -14,17 +14,27 @@ struct ButtonGame: View {
     @State private var buttonY: CGFloat = 0
     @State private var lastPressTime: Date?
     @State private var buttonColor = Color.blue
+    @State private var timerIsFinished = false
+    @State private var timeRemaining = 60
+    @State private var timer: Timer?
+    @State private var isPresentingContentView = false
     
     let rectangleWidth: CGFloat = 800
     let rectangleHeight: CGFloat = 400
+    let timerDuration: TimeInterval = 60.0
     
     var body: some View {
         GeometryReader { geometry in
             VStack {
-                Text("\(counter)")
-                    .font(.system(size: 60, weight: .bold))
-                    .opacity(isPressed ? 0.4 : 1.0)
-                    .scaleEffect(isPressed ? 1.2 : 1.0)
+                HStack {
+                    Text("\(counter) Points")
+                        .font(.system(size: 24))
+                        .padding()
+                    Spacer()
+                    Text("\(timeRemaining) seconds")
+                        .font(.system(size: 24))
+                        .padding()
+                }
                 
                 ZStack {
                     Rectangle()
@@ -33,26 +43,28 @@ struct ButtonGame: View {
                     
                     Circle()
                         .frame(width: 100, height: 100)
-                        .foregroundColor(buttonColor)                        .position(x: buttonX, y: buttonY)
+                        .foregroundColor(buttonColor)
+                        .position(x: buttonX, y: buttonY)
                         .opacity(isPressed ? 0.6 : 1.0)
                         .animation(.easeInOut(duration: 0.2))
                     
-                    Text("Tap me!")
+                    Text("Tap me")
                         .foregroundColor(.white)
                         .position(x: buttonX, y: buttonY)
                 }
                 .scaleEffect(isPressed ? 1.1 : 1.0)
                 .onAppear {
-                    buttonX = geometry.size.width / 2
-                    buttonY = geometry.size.height / 2
-                    generateRandomPosition(in: geometry.size)
+                    resetButtonPosition(in: geometry.size)
                 }
                 .onTapGesture {
+                    if timer == nil {
+                        startTimer()
+                    }
                     counter += 1
                     let currentTime = Date()
                     if let lastTime = lastPressTime {
                         let timeDifference = currentTime.timeIntervalSince(lastTime)
-                        print("Tiempo de respuesta: \(timeDifference) segundos")
+                        print("Reaction Time: \(String(format: "%.2f", timeDifference)) seconds")
                     }
                     lastPressTime = currentTime
                     generateRandomPosition(in: geometry.size)
@@ -66,6 +78,25 @@ struct ButtonGame: View {
                         isPressed = false
                     }
                 }
+            }
+            .alert(isPresented: $timerIsFinished) {
+                Alert(
+                    title: Text("Training Completed"),
+                    message: Text("Your score: \(counter) Points"),
+                    primaryButton: .default(Text("Try Again")) {
+                        counter = 0
+                        timeRemaining = Int(timerDuration)
+                        timer?.invalidate()
+                        timer = nil
+                        resetButtonPosition(in: geometry.size)
+                    },
+                    secondaryButton: .default(Text("Go to main menu")) {
+                        isPresentingContentView = true
+                    }
+                )
+            }
+            .fullScreenCover(isPresented: $isPresentingContentView) {
+                ContentView()
             }
         }
     }
@@ -92,6 +123,23 @@ struct ButtonGame: View {
         buttonY = min(buttonY, size.height - 50)
         
         buttonColor = Color(red: Double.random(in: 0...1), green: Double.random(in: 0...1), blue: Double.random(in: 0...1))
+    }
+    
+    func resetButtonPosition(in size: CGSize) {
+        buttonX = size.width / 2
+        buttonY = size.height / 2
+    }
+    
+    func startTimer() {
+        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
+            if timeRemaining > 0 {
+                timeRemaining -= 1
+            } else {
+                timerIsFinished = true
+                timer?.invalidate()
+                timer = nil
+            }
+        }
     }
 }
 

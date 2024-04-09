@@ -19,4 +19,5 @@ let sideMenu: [SideMenu] = [
     SideMenu(name: "Progress", icon: "chart.bar"),
     SideMenu(name: "Account", icon: "person.crop.square"),
     SideMenu(name: "Settings", icon: "gear"),
+    SideMenu(name: "Games", icon: "play")
 ]
