@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D6929DD72BC4B6B200E37344 /* ButtonGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6929DD62BC4B6B200E37344 /* ButtonGame.swift */; };
+		D6929DD72BC4B6B200E37344 /* ButtonGame1.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6929DD62BC4B6B200E37344 /* ButtonGame1.swift */; };
 		D6929DD92BC4CE9600E37344 /* ButtonActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6929DD82BC4CE9600E37344 /* ButtonActions.swift */; };
 		D6AAE2372B9FD75E00C43848 /* RealityKitContent in Frameworks */ = {isa = PBXBuildFile; productRef = D6AAE2362B9FD75E00C43848 /* RealityKitContent */; };
 		D6AAE2392B9FD75E00C43848 /* UsuarioDatosApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AAE2382B9FD75E00C43848 /* UsuarioDatosApp.swift */; };
@@ -37,7 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		D6929DD62BC4B6B200E37344 /* ButtonGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonGame.swift; sourceTree = "<group>"; };
+		D6929DD62BC4B6B200E37344 /* ButtonGame1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonGame1.swift; sourceTree = "<group>"; };
 		D6929DD82BC4CE9600E37344 /* ButtonActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonActions.swift; sourceTree = "<group>"; };
 		D6AAE2312B9FD75E00C43848 /* UsuarioDatos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UsuarioDatos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6AAE2352B9FD75E00C43848 /* RealityKitContent */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = RealityKitContent; sourceTree = "<group>"; };
@@ -81,7 +81,7 @@
 		D6929DD52BC4B69900E37344 /* Games */ = {
 			isa = PBXGroup;
 			children = (
-				D6929DD62BC4B6B200E37344 /* ButtonGame.swift */,
+				D6929DD62BC4B6B200E37344 /* ButtonGame1.swift */,
 				D6929DD82BC4CE9600E37344 /* ButtonActions.swift */,
 			);
 			path = Games;
@@ -93,6 +93,7 @@
 				D6929DD52BC4B69900E37344 /* Games */,
 				D6AAE2332B9FD75E00C43848 /* UsuarioDatos */,
 				D6AAE2342B9FD75E00C43848 /* Packages */,
+				D6AAE23E2B9FD76000C43848 /* Preview Content */,
 				D6AAE2492B9FD76000C43848 /* UsuarioDatosTests */,
 				D6AAE2322B9FD75E00C43848 /* Products */,
 			);
@@ -112,12 +113,9 @@
 			children = (
 				D6AAE2592B9FECFA00C43848 /* Modelos */,
 				D6AAE2582B9FECB500C43848 /* Views */,
-				D6AAE2382B9FD75E00C43848 /* UsuarioDatosApp.swift */,
-				D6AAE23A2B9FD75E00C43848 /* ContentView.swift */,
 				D6AAE23F2B9FD76000C43848 /* Preview Assets.xcassets */,
 				D6AAE2412B9FD76000C43848 /* Info.plist */,
 				D6AAE23C2B9FD76000C43848 /* Assets.xcassets */,
-				D6AAE23E2B9FD76000C43848 /* Preview Content */,
 			);
 			path = UsuarioDatos;
 			sourceTree = "<group>";
@@ -154,6 +152,8 @@
 				D6AAE2622B9FF9AF00C43848 /* ProgressView.swift */,
 				D6AAE2642B9FFA5500C43848 /* AccountView.swift */,
 				D6AAE2662B9FFA7700C43848 /* SettingsView.swift */,
+				D6AAE23A2B9FD75E00C43848 /* ContentView.swift */,
+				D6AAE2382B9FD75E00C43848 /* UsuarioDatosApp.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -279,7 +279,7 @@
 				D6AAE25B2B9FED3900C43848 /* SideMenu.swift in Sources */,
 				D6AAE2652B9FFA5500C43848 /* AccountView.swift in Sources */,
 				D6AAE2392B9FD75E00C43848 /* UsuarioDatosApp.swift in Sources */,
-				D6929DD72BC4B6B200E37344 /* ButtonGame.swift in Sources */,
+				D6929DD72BC4B6B200E37344 /* ButtonGame1.swift in Sources */,
 				D6AAE2612B9FF94F00C43848 /* RoutineView.swift in Sources */,
 				D6929DD92BC4CE9600E37344 /* ButtonActions.swift in Sources */,
 				D6AAE25F2B9FF80200C43848 /* ExercisesView.swift in Sources */,

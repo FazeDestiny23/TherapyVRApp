@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ButtonGame: View {
+struct ButtonGame1: View {
     @State private var isPressed = false
     @State private var counter = 0
     @State private var buttonX: CGFloat = 0
@@ -145,6 +145,6 @@ struct ButtonGame: View {
 
 struct ButtonGame_Previews: PreviewProvider {
     static var previews: some View {
-        ButtonGame()
+        ButtonGame1()
     }
 }
