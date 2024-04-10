@@ -45,7 +45,7 @@ struct ExercisesView: View {
             .padding()
         }
         .fullScreenCover(isPresented: $isButtonGameViewPresented) {
-            ButtonGame()
+            ButtonGame1()
         }
     }
 }
