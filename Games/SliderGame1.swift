@@ -23,9 +23,13 @@ struct SliderGame1: View {
                     Spacer()
                     HStack {
                         Sliders(maxWidth: 400, isVertical: true, updateProgress: updateProgress)
+                            .padding(10)
                         Sliders(maxWidth: 400, isVertical: true, updateProgress: updateProgress)
+                        Sliders(maxWidth: 400, isVertical: true, updateProgress: updateProgress)
+                            .padding(10)
                     }
                     Spacer()
+
                 }
                 .padding(.trailing, spacing / 2)
 
@@ -33,19 +37,18 @@ struct SliderGame1: View {
                     Spacer()
                     VStack {
                         Sliders(maxWidth: 400, isVertical: false, updateProgress: updateProgress)
+                            .padding(20)
                         Sliders(maxWidth: 400, isVertical: false, updateProgress: updateProgress)
+                        Sliders(maxWidth: 400, isVertical: false, updateProgress: updateProgress)
+                            .padding(20)
                     }
                     Spacer()
                 }
             }
 
-            Spacer()
-
             Text("Time: \(timeRemaining)")
                 .font(.headline)
                 .padding()
-
-            Spacer()
         }
         .onAppear {
             startTimer()
@@ -181,6 +184,6 @@ struct Sliders: View {
 
 struct SliderGame1_Previews: PreviewProvider {
     static var previews: some View {
-        MultiDirectionalSlidersView()
+        SliderGame1()
     }
 }
