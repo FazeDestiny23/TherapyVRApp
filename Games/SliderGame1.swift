@@ -15,37 +15,38 @@ struct SliderGame1: View {
     @State private var timeRemaining = 60
     @State private var timerIsFinished = false
     @State private var isPresentingContentView = false
-
+    @State private var shouldResetSliders = false
+    
     var body: some View {
         VStack {
             HStack(spacing: spacing) {
                 VStack {
                     Spacer()
                     HStack {
-                        Sliders(maxWidth: 400, isVertical: true, updateProgress: updateProgress)
+                        Sliders(maxWidth: 400, isVertical: true, updateProgress: updateProgress, shouldResetSliders: $shouldResetSliders)
                             .padding(10)
-                        Sliders(maxWidth: 400, isVertical: true, updateProgress: updateProgress)
-                        Sliders(maxWidth: 400, isVertical: true, updateProgress: updateProgress)
+                        Sliders(maxWidth: 400, isVertical: true, updateProgress: updateProgress, shouldResetSliders: $shouldResetSliders)
+                        Sliders(maxWidth: 400, isVertical: true, updateProgress: updateProgress, shouldResetSliders: $shouldResetSliders)
                             .padding(10)
                     }
                     Spacer()
-
+                    
                 }
                 .padding(.trailing, spacing / 2)
-
+                
                 VStack {
                     Spacer()
                     VStack {
-                        Sliders(maxWidth: 400, isVertical: false, updateProgress: updateProgress)
+                        Sliders(maxWidth: 400, isVertical: false, updateProgress: updateProgress, shouldResetSliders: $shouldResetSliders)
                             .padding(20)
-                        Sliders(maxWidth: 400, isVertical: false, updateProgress: updateProgress)
-                        Sliders(maxWidth: 400, isVertical: false, updateProgress: updateProgress)
+                        Sliders(maxWidth: 400, isVertical: false, updateProgress: updateProgress, shouldResetSliders: $shouldResetSliders)
+                        Sliders(maxWidth: 400, isVertical: false, updateProgress: updateProgress, shouldResetSliders: $shouldResetSliders)
                             .padding(20)
                     }
                     Spacer()
                 }
             }
-
+            
             Text("Time: \(timeRemaining)")
                 .font(.headline)
                 .padding()
@@ -69,11 +70,11 @@ struct SliderGame1: View {
             ContentView()
         }
     }
-
+    
     func updateProgress(progress: CGFloat) {
         totalProgress += Int(progress * 100)
     }
-
+    
     func startTimer() {
         timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
             if timeRemaining > 0 {
@@ -85,7 +86,7 @@ struct SliderGame1: View {
             }
         }
     }
-
+    
     func resetGame() {
         counter = 0
         totalProgress = 0
@@ -93,6 +94,7 @@ struct SliderGame1: View {
         timer?.invalidate()
         timer = nil
         startTimer()
+        shouldResetSliders = true
     }
 }
 
@@ -100,11 +102,12 @@ struct Sliders: View {
     var maxWidth: CGFloat
     var isVertical: Bool
     var updateProgress: (CGFloat) -> Void
-
+    @Binding var shouldResetSliders: Bool
+    
     @State private var sliderProgress: CGFloat = 0
     @State private var sliderSize: CGSize = .zero
     @State private var lastDragValue: CGFloat = 0
-
+    
     var body: some View {
         if isVertical {
             VStack {
@@ -112,7 +115,7 @@ struct Sliders: View {
                     Rectangle()
                         .fill(Color("b"))
                         .frame(width: 100, height: maxWidth)
-
+                    
                     Rectangle()
                         .fill(Color("a"))
                         .frame(width: 100, height: sliderSize.height)
@@ -142,13 +145,21 @@ struct Sliders: View {
                     updateProgress(sliderProgress)
                 }))
             }
+            .onChange(of: shouldResetSliders) { newValue in
+                if newValue {
+                    sliderProgress = 0
+                    sliderSize = .zero
+                    lastDragValue = 0
+                    shouldResetSliders = false
+                }
+            }
         } else {
             HStack {
                 ZStack(alignment: .leading) {
                     Rectangle()
                         .fill(Color("b"))
                         .frame(width: maxWidth, height: 100)
-
+                    
                     Rectangle()
                         .fill(Color("a"))
                         .frame(width: sliderSize.width, height: 100)
@@ -177,6 +188,14 @@ struct Sliders: View {
                     lastDragValue = sliderSize.width
                     updateProgress(sliderProgress)
                 }))
+            }
+            .onChange(of: shouldResetSliders) { newValue in
+                if newValue {
+                    sliderProgress = 0
+                    sliderSize = .zero
+                    lastDragValue = 0
+                    shouldResetSliders = false
+                }
             }
         }
     }
